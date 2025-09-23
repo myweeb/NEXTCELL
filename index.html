@@ -1,271 +1,47 @@
-  <!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXGROUP</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #000;
-      margin: 0;
-      padding: 0;
-      transition: background-color 0.3s, color 0.3s;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Loja</title>
+<link rel="stylesheet" href="css/estilo.css">
 
-    header {
-      background-color: #383c68;
-      color: white;
-      padding: 30px;
-      text-align: center;
-      position: relative;
-    }
-
-    header h1 {
-      margin: 0;
-    }
-
-    #toggle-theme {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 5px;
-      background-color: #ffffff30;
-      color: white;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-      gap: 20px;
-    }
-
-    .produto {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 15px;
-      width: 250px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .produto img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-    }
-
-    .produto h2 {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-
-    .produto p {
-      color: #555;
-    }
-
-    .produto a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 15px;
-      background-color: #28a745;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-    }
-
-    .produto a:hover {
-      background-color: #218838;
-    }
-
-    footer {
-      background-color: #383c68;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-
-    /* 🌙 TEMA ESCURO */
-    body.dark-mode {
-      background-color: #121212;
-      color: #e0e0e0;
-    }
-
-    body.dark-mode header,
-    body.dark-mode footer {
-      background-color: #1f1f3d;
-      color: white;
-    }
-
-    body.dark-mode .produto {
-      background-color: #1e1e1e;
-      border-color: #333;
-      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
-    }
-
-    body.dark-mode .produto p {
-      color: #cccccc;
-    }
-
-    body.dark-mode .produto a {
-      background-color: #28a745;
-      color: white;
-    }
-
-    body.dark-mode .produto a:hover {
-      background-color: #1c7c31;
-    }
-
-    body.dark-mode h1,
-    body.dark-mode h2 {
-      color: white;
-    }
-
-    body.dark-mode #toggle-theme {
-      background-color: #ffffff10;
-    }
-  </style>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.15.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.15.0/firebase-firestore-compat.js"></script>
 </head>
-
 <body>
+<header>
+  <div class="logo">Minha Loja</div>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="#produtos">Produtos</a>
+    <a href="login.html">Login Vendedor</a>
+  </nav>
+</header>
 
-  <!-- 🔥 CABEÇALHO -->
-  <header>
-    <h1>NEXGROUP</h1>
-    <button id="toggle-theme">🌙</button>
-  </header>
+<div class="banner">
+  <img src="imagens/banner.jpg" alt="Banner" class="banner-img">
+</div>
 
-  <!-- 🎮 PRIMEIRA PRATELEIRA - JOGOS -->
-  <h2 style="text-align:center; margin-top:20px;">Jogos em destaque</h2>
-  <div class="container">
-    <div class="produto">
-      <img src="mafia.jpeg" alt="Mafia">
-      <h2>MAFIA</h2>
-      <p>Mundo aberto imersivo.</p>
-      <a href="#">COMPRAR</a>
-    </div>
-<div class="produto">
-      <img src="ui.jpeg" alt="Produto 2" />
-      <h2>Dead by Daylight</h2>
-      <p>Terror da semana.</p>
-      <a href="https://store.steampowered.com/app/381210/Dead_by_Daylight/" target="_blank">COMPRAR</a>
-    </div>
-    <div class="produto">
-      <img src="b.jpeg" alt="Produto 3" />
-      <h2>Battlefield™ 2042</h2>
-      <p>horrível + barato.</p>
-      <a href="https://store.steampowered.com/app/1517290/Battlefield_2042/" target="_blank">COMPRAR</a>
-    </div>
-    
-    <div class="produto">
-      <img src="red.jpeg" alt="Red Dead 2">
-      <h2>Red Dead 2</h2>
-      <p>70% OFF Steam</p>
-      <a href="#">COMPRAR</a>
-    </div>
-<h2 style="text-align: center;margin-top:20px;">NEXTIME GRIFTS</h2>
+<div class="categorias">
+  <button onclick="filtrar('todos')">Todos</button>
+  <button onclick="filtrar('camisas')">Camisas</button>
+  <button onclick="filtrar('calças')">Calças</button>
+  <button onclick="filtrar('sapatos')">Sapatos</button>
+</div>
+<script src="https://www.gstatic.com/firebasejs/10.15.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.15.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.15.0/firebase-storage-compat.js"></script>
 
-  <!-- Terceira prateleira -->
-  <div class="container">
-    <div class="produto">
-      <img src="rune.webp" alt="produto 9" />
-      <h2>Deltarun</h2> 
-      <p>De Toby fox</p>
-      <a href="https://www.mediafire.com/file/yk2mm4gsqlfum91" target="_blank">BAIXAR</a>
-    </div>
-    <div class="produto">
-      <img src="nw.jpeg" alt="Produto 10" />
-      <h2>Fallout NV</h2>
-      <p>com uttorent</p>
-      <a href="magnet:?xt=urn:btih:AB17BE3C8B7FA88B3AF13E9C4FF7200B98525F3C" target="_blank">COMPRAR</a>
-    </div>
-    
-    <div class="produto">
-      <img src="max.jpg" alt="Max Payne 3">
-      <h2>Max Payne 3</h2>
-      <p>Max no Brasil</p>
-      <a href="#">COMPRAR</a>
-    </div>
-    <div class="produto">
-      <img src="sile.jpg" alt="Silent Hill 2">
-      <h2>Silent Hill 2</h2>
-      <p>Antigo e aterrorizante</p>
-      <a href="#">COMPRAR</a>
-    </div>
-  </div>
+<div class="produtos" id="produtos">
+  <!-- Produtos carregados via Firebase -->
+</div>
 
-  <!-- 🌟 >
-
-  <!-- 🛍️ TERCEIRA PRATELEIRA - PRODUTOS -->
-  <h2 style="text-align:center; margin-top:20px;">Produtos e Periféricos</h2>
-  <div class="container">
-    <div class="produto">
-      <img src="gh.jpeg" alt="Controle Xbox">
-      <h2>Controle Xbox</h2>
-      <p>Apenas R$390 na Amazon</p>
-      <a href="#">COMPRAR</a>
-    </div>
-    <div class="produto">
-      <img src="aly.jpeg" alt="Xbox Ally">
-      <h2>Xbox Ally</h2>
-      <p>Pré-venda disponível</p>
-      <a href="#">GARANTIR</a>
-    </div>
-    <div class="produto">
-      <img src="po.jpeg" alt="Controle sem fio">
-      <h2>Controle sem fio</h2>
-      <p>Por apenas R$40</p>
-      <a href="#">COMPRAR</a>
-    </div>
-    <div class="produto">
-      <img src="alive.jpeg" alt="Asus Vivobook">
-      <h2>Asus Vivobook 15 Go</h2>
-      <p>R$2.500 na Amazon</p>
-      <a href="#">COMPRAR</a>
-    </div>
-  </div>
-
-  <!-- 🌐 QUARTA PRATELEIRA - GRUPO -->
-  <h2 style="text-align:center; margin-top:20px;">NEXTGROUP</h2>
-  <div class="container">
-    <div class="produto">
-      <img src="nb.jpeg" alt="NextBlog">
-      <h2>NEXTBLOG</h2>
-      <p>O início do blog mais formal da internet</p>
-      <a href="#">VER</a>
-    </div>
-    <div class="produto">
-      <img src="lç.png" alt="Next Game Store">
-      <h2>NEXT GAME STORE</h2>
-      <p>Todos os jogos gratuitos, muitos via Utorrent</p>
-      <a href="#">ENTRAR</a>
-    </div>
-  </div>
-
-  <!-- 🔥 RODAPÉ -->
-  <footer>
-    <p>&copy; NEXTIME GROUP BR.</p>
-    <p>Contato: kleberluacssilva@53.gmail.com | Instagram: @EM BREVE</p>
-  </footer>
-
-  <!-- 🌙 SCRIPT DO TEMA -->
-  <script>
-    const toggleBtn = document.getElementById('toggle-theme');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      toggleBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-    });
-  </script>
-
+<script src="js/main.js"></script>
+<script>
+inicializarFirebase();
+carregarProdutos(); // Renderiza produtos na página principal
+</script>
 </body>
 </html>

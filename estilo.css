@@ -1,0 +1,41 @@
+/* === Geral === */
+body {margin:0;font-family:Arial,sans-serif;background:#f5f5f5;color:#333;}
+header {background:#111;color:#fff;padding:12px 25px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;}
+header nav a {color:#fff;text-decoration:none;margin:0 10px;font-weight:bold;}
+header nav a:hover {color:#27ae60;}
+.logo{font-size:22px;font-weight:bold;}
+.banner{width:100%;height:220px;overflow:hidden;border-bottom:2px solid #27ae60;}
+.banner-img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
+.banner-img:hover{transform:scale(1.05);}
+
+/* Categorias */
+.categorias{text-align:center;margin:20px 0;}
+.categorias button{padding:7px 15px;margin:5px;border:none;background:#111;color:#fff;cursor:pointer;border-radius:6px;font-weight:bold;transition:0.3s;}
+.categorias button:hover{background:#27ae60;}
+
+/* Produtos */
+.produtos{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;padding:20px;}
+.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 3px 8px rgba(0,0,0,0.15);display:flex;flex-direction:column;text-align:center;transition:0.3s;}
+.card:hover{transform:translateY(-6px);box-shadow:0 6px 16px rgba(0,0,0,0.25);}
+.card img{width:100%;height:150px;object-fit:cover;transition:0.3s;}
+.card img:hover{transform:scale(1.05);}
+.card-body{padding:10px;}
+.card-body h3{margin:6px 0;font-size:15px;}
+.preco{color:#27ae60;font-weight:bold;font-size:14px;}
+.btn{display:inline-block;background:#111;color:#fff;padding:7px 12px;text-decoration:none;margin-top:7px;border-radius:6px;font-size:13px;transition:0.3s;}
+.btn:hover{background:#27ae60;}
+
+/* Formulário Admin */
+.vendedor-form{background:#fff;padding:18px;margin:20px;border-radius:10px;box-shadow:0 3px 8px rgba(0,0,0,0.15);}
+.vendedor-form input,.vendedor-form select{padding:7px;margin:6px 0;width:100%;border-radius:6px;border:1px solid #ccc;}
+.vendedor-form button{padding:9px 15px;background:#111;color:#fff;border:none;border-radius:6px;cursor:pointer;margin-top:6px;font-weight:bold;}
+.vendedor-form button:hover{background:#27ae60;}
+
+/* Login */
+.login-container{max-width:320px;margin:60px auto;padding:22px;background:#fff;border-radius:10px;box-shadow:0 3px 8px rgba(0,0,0,0.15);}
+.login-container input{width:100%;padding:9px;margin:10px 0;border-radius:6px;border:1px solid #ccc;}
+.login-container button{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold;}
+.login-container button:hover{background:#27ae60;}
+
+/* Responsivo */
+@media(max-width:600px){.produtos{grid-template-columns:1fr;padding:12px;}.banner{height:140px;}}
