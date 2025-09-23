@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel do Vendedor</title>
+<link rel="stylesheet" href="css/estilo.css">
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.15.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.15.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+<header>
+  <div class="logo">Minha Loja</div>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="#" onclick="logout()">Sair</a>
+  </nav>
+</header>
+
+<div class="vendedor-form">
+  <h3>Adicionar Produto</h3>
+  <input type="text" id="nome" placeholder="Nome do Produto">
+  <input type="text" id="preco" placeholder="Preço (ex: R$ 99,90)">
+  <input type="file" id="imagemFile" accept="image/*">
+>
+  <select id="categoria">
+    <option value="camisas">Camisa</option>
+    <option value="calças">Calça</option>
+    <option value="sapatos">Sapato</option>
+      <option value="sapatos">Gola polo</option>
+  </select>
+  <input type="text" id="whatsapp" placeholder="WhatsApp do vendedor (ex: 5511999999999)">
+  <button onclick="adicionarProduto()">Adicionar Produto</button>
+</div>
+
+<div class="produtos" id="produtos-admin">
+  <!-- Produtos carregados aqui -->
+</div>
+
+<script src="js/main.js"></script>
+<script>
+inicializarFirebase();
+verificarLogin(); // Bloqueia acesso se não estiver logado
+carregarProdutosAdmin();
+</script>
+</body>
+</html>
